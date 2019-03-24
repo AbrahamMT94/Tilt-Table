@@ -84,6 +84,7 @@ float GetPIDOutput(PID* pPID, float input, float dTime)
 
 int main(void)
     {	
+	//PID declaration and set up
 	PID* pid1=InitPID();
 	PID* pid2=InitPID();
 	SetPIDSetpoint(pid1,-.6);
@@ -104,12 +105,8 @@ int main(void)
 					 //Every 20 mSeconds, update the Servos
 				     X_pos = Get_X();			     			
 			         Y_pos = Get_Y();
-			       //  TERMINAL_PRINTF("X= %.2f      Y= %.2f  \r\n",X_pos, Y_pos);				         
-			         //Example, just out put the position X and Y
-			         
-			         //Y_servo = Y_pos;
-			         //X_servo = X_pos;			    
-//********************************* put your PID controller code here ***************				    
+			     		    
+//********************************* PID controller code ***************				    
 			         Y_servo = GetPIDOutput(pid1, Y_pos, 20);
 			         X_servo = GetPIDOutput(pid2, X_pos, 20);
 			         TERMINAL_PRINTF("X= %.2f      Y= %.2f  \r",X_servo, Y_servo);
